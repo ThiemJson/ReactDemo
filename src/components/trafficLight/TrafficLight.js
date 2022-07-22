@@ -29,11 +29,11 @@ export class TrafficLight extends Component {
     //   this.setState(nextColor);
     // }, 1000);
 
-    // setInterval(() => {
-    //   this.setState(() => {
-    //     return getNextColor(this.state.currentColor);
-    //   });
-    // }, 1000);
+    setInterval(() => {
+      this.setState(() => {
+        return getNextColor(this.state.currentColor);
+      });
+    }, 1000);
   }
 
   render() {

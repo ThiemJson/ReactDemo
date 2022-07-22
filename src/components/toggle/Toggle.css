@@ -25,7 +25,7 @@
   transform: translateX(50px);
 }
 
-.toggle-control {
+/* .toggle-control {
   margin: 0 25px;
   display: flex;
   align-items: center;
@@ -34,4 +34,4 @@
 
 .toggle > * {
   cursor: pointer;
-}
+} */

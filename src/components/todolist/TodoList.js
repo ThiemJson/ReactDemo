@@ -6,14 +6,35 @@ import "./TodoList.css";
 export class TodoList extends Component {
   constructor() {
     super();
-    console.log("Component constructor");
+    console.log("TodoList Component constructor");
+  }
+
+  componentWillMount() {
+    console.log("TodoList Component willMount");
   }
 
   componentDidMount() {
-    console.log("Component didMoud");
+    console.log("TodoList Component didMoud");
+  }
+
+  componentDidUpdate() {
+    console.log("TodoList Component didUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log("TodoList Component willUnMount");
+  }
+
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  componentDidCatch() {
+    console.log("TodoList Component didCatch");
   }
 
   render() {
+    console.log("TodoList Component render");
     this.listItem = this.props.listItem;
     const items = this.listItem.map((item, index) => (
       <TodoItem key={index} item={item} />

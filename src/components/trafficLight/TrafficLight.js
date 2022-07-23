@@ -26,7 +26,7 @@ export class TrafficLight extends Component {
 
     // setInterval(() => {
     //   const nextColor = getNextColor(this.state.currentColor);
-    //   this.setState(nextColor);
+    //   this.setState(nextColor);1
     // }, 1000);
 
     setInterval(() => {

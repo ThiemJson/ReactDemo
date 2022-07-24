@@ -1,23 +1,20 @@
 import "./App.css";
-import { Counter } from "./components/counter/Counter";
-import { TodoList } from "./components/todolist/TodoList";
+import { CounterProvider } from "./components/provider/CounterProvider";
+import { CounterContext } from "./context/CounterContext";
 
 function App() {
-  const listItem = [
-    {
-      title: "Đi đá bóng",
-      isComplete: true,
-    },
-    {
-      title: "Đi đá bóng",
-      isComplete: false,
-    },
-    {
-      title: "Đi đá bóng",
-      isComplete: true,
-    },
-  ];
-  return <Counter />;
+  return (
+    <CounterProvider>
+      <CounterContext.Consumer>
+        {({ count }) => <h3>{count}</h3>}
+      </CounterContext.Consumer>
+      <CounterContext.Consumer>
+        {({ updateCount }) => (
+          <button onClick={updateCount}>Update value</button>
+        )}
+      </CounterContext.Consumer>
+    </CounterProvider>
+  );
 }
 
 export default App;

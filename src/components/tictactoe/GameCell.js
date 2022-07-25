@@ -1,21 +1,25 @@
 import React, { Component } from "react";
-import { GAME_CELL_NONE } from "./TictactoeUtils";
+import { TictactoeContext } from "../../context/tictactoe_context/TictactoeContext";
 
 export class GameCell extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cellValue: GAME_CELL_NONE,
-      cellOnClick: (value) => {},
-    };
-  }
-
   render() {
-    const { cellValue } = this.state;
     return (
-      <div className="game-cell" onClick={this.state.cellOnClick}>
-        <img src={cellValue} alt="error" className="game-cell-image" />
-      </div>
+      <TictactoeContext.Consumer>
+        {({ currentBoard, onClickCell }) => (
+          <div
+            className="game-cell"
+            onClick={() => {
+              onClickCell(this.props.cellIndex);
+            }}
+          >
+            <img
+              src={currentBoard[this.props.cellIndex]}
+              alt="error"
+              className="game-cell-image"
+            />
+          </div>
+        )}
+      </TictactoeContext.Consumer>
     );
   }
 }

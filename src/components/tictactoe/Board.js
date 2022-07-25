@@ -10,15 +10,11 @@ export class Board extends Component {
   render() {
     return (
       <div className="game-board">
-        <GameCell></GameCell>
-        <GameCell></GameCell>
-        <GameCell></GameCell>
-        <GameCell></GameCell>
-        <GameCell></GameCell>
-        <GameCell></GameCell>
-        <GameCell></GameCell>
-        <GameCell></GameCell>
-        <GameCell></GameCell>
+        {Array(9)
+          .fill()
+          .map((item, index) => (
+            <GameCell key={index} cellIndex={index} />
+          ))}
       </div>
     );
   }

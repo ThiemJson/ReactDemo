@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Board } from "./Board";
 import "./Tictactoe.css";
 
 export class Game extends Component {
@@ -8,6 +9,10 @@ export class Game extends Component {
   }
 
   render() {
-    return <div className="Game"></div>;
+    return (
+      <div className="game">
+        <Board></Board>
+      </div>
+    );
   }
 }

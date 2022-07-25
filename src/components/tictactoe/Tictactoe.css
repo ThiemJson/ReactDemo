@@ -35,8 +35,23 @@ h6 {
   overflow-wrap: break-word;
 }
 
-.Game {
+.game-board {
+  margin: 25px;
   width: 500px;
   height: 500px;
-  background-color: aqua;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3), 1fr;
+}
+
+.game-cell {
+  margin: 5px;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
+}
+
+.game-cell-image {
+  object-fit: cover;
 }

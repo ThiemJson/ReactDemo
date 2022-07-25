@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { GameCell } from "./GameCell";
 
 export class Board extends Component {
   constructor(props) {
@@ -7,6 +8,18 @@ export class Board extends Component {
   }
 
   render() {
-    return <div className="Board"></div>;
+    return (
+      <div className="game-board">
+        <GameCell></GameCell>
+        <GameCell></GameCell>
+        <GameCell></GameCell>
+        <GameCell></GameCell>
+        <GameCell></GameCell>
+        <GameCell></GameCell>
+        <GameCell></GameCell>
+        <GameCell></GameCell>
+        <GameCell></GameCell>
+      </div>
+    );
   }
 }

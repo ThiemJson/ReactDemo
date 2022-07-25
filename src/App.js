@@ -1,20 +1,8 @@
 import "./App.css";
-import { CounterProvider } from "./provider/CounterProvider";
-import { CounterContext } from "./context/CounterContext";
+import { Game } from "./components/tictactoe/Game";
 
 function App() {
-  return (
-    <CounterProvider>
-      <CounterContext.Consumer>
-        {({ count }) => <h3>{count}</h3>}
-      </CounterContext.Consumer>
-      <CounterContext.Consumer>
-        {({ updateCount }) => (
-          <button onClick={updateCount}>Update value</button>
-        )}
-      </CounterContext.Consumer>
-    </CounterProvider>
-  );
+  return <Game />;
 }
 
 export default App;

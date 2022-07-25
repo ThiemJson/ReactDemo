@@ -1,5 +1,5 @@
 import "./App.css";
-import { CounterProvider } from "./components/provider/CounterProvider";
+import { CounterProvider } from "./provider/CounterProvider";
 import { CounterContext } from "./context/CounterContext";
 
 function App() {

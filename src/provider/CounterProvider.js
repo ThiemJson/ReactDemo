@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CounterContext } from "../../context/CounterContext";
+import { CounterContext } from "../context/CounterContext";
 
 export class CounterProvider extends Component {
   constructor(props) {

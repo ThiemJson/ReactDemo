@@ -1,8 +1,8 @@
 import "./App.css";
-import { Game } from "./components/tictactoe/Game";
+import { DemoReducer } from "./components/demo_reducer/DemoReducer";
 
 function App() {
-  return <Game />;
+  return <DemoReducer />;
 }
 
 export default App;

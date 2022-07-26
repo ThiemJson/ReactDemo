@@ -1,26 +1,23 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-export class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 1,
-    };
-  }
+export const Counter = () => {
+  const [count, setCount] = useState(0);
+  const [isTrue, setIsTrue] = useState(false);
 
-  componentDidMount() {
-    // this.intervalId = setInterval(() => {
-    //   this.setState({
-    //     count: this.state.count + 1,
-    //   });
-    // }, 1000);
-  }
+  const updateCount = () => {
+    // setCount((count) => count + 1);
+    // setInterval(() => {
+    //   setIsTrue((isTrue) => !isTrue);
+    // }, 2000);
+  };
 
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
-
-  render() {
-    return <div className="Counter">{this.props.children(this.state)}</div>;
-  }
-}
+  console.log("Render");
+  return (
+    <div className="Counter">
+      <p>
+        {count} {isTrue}
+      </p>
+      <button onClick={updateCount}>Click</button>
+    </div>
+  );
+};

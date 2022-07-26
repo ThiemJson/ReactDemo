@@ -1,8 +1,8 @@
 import "./App.css";
-import { DemoReducer } from "./components/demo_reducer/DemoReducer";
+import { Counter } from "./components/counter/Counter";
 
 function App() {
-  return <DemoReducer />;
+  return <Counter />;
 }
 
 export default App;

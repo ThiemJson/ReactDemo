@@ -1,8 +1,17 @@
 import "./App.css";
-import { Counter } from "./components/counter/Counter";
+import CardList from "./components/card/CardList";
+import Card from "./components/card/Card";
 
 function App() {
-  return <Counter />;
+  return (
+    <CardList>
+      {Array(6)
+        .fill()
+        .map(() => (
+          <Card />
+        ))}
+    </CardList>
+  );
 }
 
 export default App;

@@ -14,7 +14,7 @@ export const StoryCell = () => {
       <span className="storycell-name absolute z-10 bottom-0 translate-x-[12px] -translate-y-[8px] text-[#fff] font-medium">
         Thiem
       </span>
-      <div className=" border-[1px] border-[#00000010] flex justify-center items-center bg-[#5a5f64] absolute z-10 w-[42px] h-[42px] rounded-full top-0 translate-x-[12px] translate-y-[12px]">
+      <div className=" border-[1px] border-[#00000010] flex justify-center items-center bg-blue-500 absolute z-10 w-[42px] h-[42px] rounded-full top-0 translate-x-[12px] translate-y-[12px]">
         <img
           src="https://scontent.fhan2-2.fna.fbcdn.net/v/t39.30808-6/240587477_3009574332615311_7526065467406807859_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ZluuMMvJekQAX9q4qPB&tn=GIfYAOnpAWs0mA5v&_nc_ht=scontent.fhan2-2.fna&oh=00_AT9SBSZ3b0_AP_c_o5oqrhb1pYr_OU2mGzXhudcFHRDG4g&oe=62E93D2D"
           alt=""

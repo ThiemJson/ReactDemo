@@ -11,7 +11,9 @@ import { Card } from "./components/card_taildwind/Card";
 function App() {
   return (
     <CardList>
-      <Card data={StyledCardListData[0]} />
+      {StyledCardListData.map((item, index) => (
+        <Card key={index} data={item}></Card>
+      ))}
     </CardList>
   );
 }

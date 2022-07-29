@@ -7,7 +7,7 @@ export const StyledCardListData = [
     backgrounImage:
       "https://cdn.dribbble.com/users/2400293/screenshots/18733513/media/808ca1b009efd4781844b7e716e13edb.png?compress=1&resize=1000x750&vertical=top",
     avatar:
-      "https://cdn.dribbble.com/users/2400293/avatars/normal/d96fe84e413ef11b9a219a84158a739a.jpg?1573205144",
+      "https://cdn.dribbble.com/users/2400293/screenshots/18733513/media/808ca1b009efd4781844b7e716e13edb.png?compress=1&resize=1000x750&vertical=top",
     name: "Thiem jason",
     reactCount: 200,
     title: "Beautiful Beach",

@@ -1,11 +1,7 @@
 import "./App.css";
-import { Counter } from "./components/demo_useEffect/Counter";
-// import { Card } from "./components/card_class_component/Card";
-// import { CardList } from "./components/card_class_component/CardList";
-// import Card from "./components/card/Card";
-// import CardList from "./components/card/CardList";
+import { Photo } from "./components/photos/Photo";
 function App() {
-  return <Counter></Counter>;
+  return <Photo></Photo>;
 }
 
 export default App;

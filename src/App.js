@@ -1,7 +1,7 @@
 import "./App.css";
-import { Counter } from "./components/counter/Counter";
+import { HackerNews } from "./components/news/HackerNews";
 function App() {
-  return <Counter></Counter>;
+  return <HackerNews></HackerNews>;
 }
 
 export default App;

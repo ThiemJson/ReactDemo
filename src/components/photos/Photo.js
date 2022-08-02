@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-//https://picsum.photos/v2/list
 
 export const fetchPhotos = async (url) => {
   try {
@@ -26,7 +25,7 @@ export const Photo = () => {
   };
 
   useEffect(() => {
-    handlerFetchPhotos();
+    // handlerFetchPhotos();
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 import "./App.css";
-import { Photo } from "./components/photos/Photo";
+import { Counter } from "./components/counter/Counter";
 function App() {
-  return <Photo></Photo>;
+  return <Counter></Counter>;
 }
 
 export default App;

@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
+import { useReducerExt } from "../../hooks/use_reducer_ext/useReducerExt";
 
 export const fetchHackerNews = async (url) => {
   return axios.get(url);
@@ -48,7 +49,7 @@ export const HackerNewsReducer = () => {
     }
   };
 
-  const [state, reducerDispatch] = useReducer(hackerNewsReducer, {
+  const [state, reducerDispatch] = useReducerExt(hackerNewsReducer, {
     loading: true,
     hits: [],
     query: "",

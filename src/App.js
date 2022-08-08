@@ -1,7 +1,7 @@
 import "./App.css";
-import { HackerNewsReducer } from "./components/news/HackerNewsReducer";
+import { RefTimeStop } from "./components/ref_timestop/RefTimeStop.js";
 function App() {
-  return <HackerNewsReducer></HackerNewsReducer>;
+  return <RefTimeStop></RefTimeStop>;
 }
 
 export default App;

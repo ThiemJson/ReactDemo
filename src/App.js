@@ -1,7 +1,7 @@
 import "./App.css";
-import { RefTimeStop } from "./components/ref_timestop/RefTimeStop.js";
+import { DropDown } from "./components/dropdown/DropDown";
 function App() {
-  return <RefTimeStop></RefTimeStop>;
+  return <DropDown></DropDown>;
 }
 
 export default App;

@@ -56,9 +56,9 @@ export const DropDown = () => {
           }}
         >
           {ListItem.map((item, index) => {
-            return (
+            const itemComponent = (
               <div
-                className=" p-3 cursor-pointer "
+                className=" p-3 cursor-pointer m-1 "
                 key={index}
                 onClick={() => {
                   handlerClickItem(index);
@@ -67,6 +67,20 @@ export const DropDown = () => {
                 {item}
               </div>
             );
+
+            const itemSelected = (
+              <div
+                className=" p-3 cursor-pointer m-1 bg-gray-200 rounded-lg"
+                key={index}
+                onClick={() => {
+                  handlerClickItem(index);
+                }}
+              >
+                {item}
+              </div>
+            );
+
+            return index === selectedIndex ? itemSelected : itemComponent;
           })}
         </div>
       )}

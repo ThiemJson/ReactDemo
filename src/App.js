@@ -1,7 +1,7 @@
 import "./App.css";
-import { HackerNewsWithCustomHook } from "./components/news/HackerNewsWithCustomHook";
+import { SideMenu } from "./components/side_menu/SideMenu";
 function App() {
-  return <HackerNewsWithCustomHook></HackerNewsWithCustomHook>;
+  return <SideMenu></SideMenu>;
 }
 
 export default App;

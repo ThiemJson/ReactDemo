@@ -1,7 +1,7 @@
 import "./App.css";
-import { SideMenu } from "./components/side_menu/SideMenu";
+import Form from "./components/form/Input";
 function App() {
-  return <SideMenu></SideMenu>;
+  return <Form></Form>;
 }
 
 export default App;

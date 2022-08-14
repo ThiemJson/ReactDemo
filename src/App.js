@@ -1,7 +1,7 @@
 import "./App.css";
-import Form from "./components/form/Input";
+import { MovieSearchApp } from "./components/movie_app/MovieSearchApp";
 function App() {
-  return <Form></Form>;
+  return <MovieSearchApp></MovieSearchApp>;
 }
 
 export default App;

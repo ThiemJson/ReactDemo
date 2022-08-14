@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHandleChange } from "../../hooks/useHandleChange";
 
 const Form = () => {
@@ -7,14 +7,19 @@ const Form = () => {
     email: "",
   });
 
+  const [nameError, setNameError] = useState("");
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <div className="p-5">
-      <div className="flex flex-col gap-y-3">
+    <form className="p-5" autoComplete="off">
+      <div className="flex flex-col gap-y-3 max-w-[300px] w-full">
         <input
           type="text"
           name="fullname"
           placeholder="Enter your name"
-          className=" w-full max-w-[300px] p-5 border border-gray-200 rounded-lg"
+          className=" w-full p-5 border border-gray-200 rounded-lg"
           onChange={handleChange}
         />
         <input
@@ -24,8 +29,15 @@ const Form = () => {
           className=" w-full max-w-[300px] p-5 border border-gray-200 rounded-lg"
           onChange={handleChange}
         />
+        <button
+          type="submit"
+          className="p-3 text-white rounded-lg bg-blue-500"
+          onClick={handleSubmitForm}
+        >
+          Submit
+        </button>
       </div>
-    </div>
+    </form>
   );
 };
 

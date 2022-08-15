@@ -1,7 +1,11 @@
 import "./App.css";
-import { MovieSearchApp } from "./components/movie_app/MovieSearchApp";
+import { SignUpForm } from "./components/form/SignUpForm";
 function App() {
-  return <MovieSearchApp></MovieSearchApp>;
+  return (
+    <div>
+      <SignUpForm></SignUpForm>
+    </div>
+  );
 }
 
 export default App;

@@ -1,44 +1,13 @@
 import { useFormik } from "formik";
 import React from "react";
 import styled from "styled-components";
+import * as Yup from "yup";
 
 export const StyledLabel = styled.label`
   font-weight: bold;
 `;
 
 export const SignUpForm = () => {
-  const validate = (values) => {
-    const error = {};
-
-    // First name
-    const firstName = values.firstName;
-    if (!firstName) {
-      error.firstName = `Require`;
-    }
-    if (firstName?.length > 20) {
-      error.firstName = `Must be 20 characters of less`;
-    }
-
-    // First name
-    const lastName = values.lastName;
-    if (!lastName) {
-      error.lastName = `Require`;
-    }
-    if (lastName?.length > 20) {
-      error.lastName = `Must be 20 characters of less`;
-    }
-
-    // Email address
-    const emailAddress = values.emailAddress;
-    if (!emailAddress) {
-      error.emailAddress = `Require`;
-    }
-    if (emailAddress?.length > 25) {
-      error.emailAddress = `Must be 25 characters of less`;
-    }
-    return error;
-  };
-
   const formik = useFormik({
     initialValues: {
       firstName: ``,
@@ -46,7 +15,20 @@ export const SignUpForm = () => {
       emailAddress: ``,
       intro: ``,
     },
-    validate,
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .max(20, `Must be 20 characters or less`)
+        .required(`Required`),
+      lastName: Yup.string()
+        .max(10, `Must be 20 characters or less`)
+        .required(`Required`),
+      emailAddress: Yup.string()
+        .max(10, `Must be 20 characters or less`)
+        .required(`Required`),
+      intro: Yup.string()
+        .max(10, `Must be 20 characters or less`)
+        .required(`Required`),
+    }),
     onSubmit: (values) => {
       console.log(values);
     },
@@ -63,14 +45,11 @@ export const SignUpForm = () => {
         <StyledLabel htmlFor="firstName">First name</StyledLabel>
         <input
           type="text"
-          name="firstName"
           className=" p-4 rounded-md border border-gray-100 "
           placeholder="Enter your first name"
-          value={formik.values.firstName}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("firstName")}
         />
-        {formik.errors.firstName && (
+        {formik.touched.firstName && formik.errors.firstName && (
           <div className=" text-sm text-red-500 font-semibold ">
             {formik.errors.firstName}
           </div>
@@ -82,14 +61,11 @@ export const SignUpForm = () => {
         <StyledLabel htmlFor="lastName">Last name</StyledLabel>
         <input
           type="text"
-          name="lastName"
           className=" p-4 rounded-md border border-gray-100 "
           placeholder="Enter your last name"
-          value={formik.values.lastName}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("lastName")}
         />
-        {formik.errors.lastName && (
+        {formik.touched.lastName && formik.errors.lastName && (
           <div className=" text-sm text-red-500 font-semibold ">
             {formik.errors.lastName}
           </div>
@@ -101,14 +77,11 @@ export const SignUpForm = () => {
         <StyledLabel htmlFor="emailAddress">Email address</StyledLabel>
         <input
           type="text"
-          name="emailAddress"
           className=" p-4 rounded-md border border-gray-100 "
           placeholder="Enter your email address"
-          value={formik.values.emailAddress}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("emailAddress")}
         />
-        {formik.errors.emailAddress && (
+        {formik.touched.emailAddress && formik.errors.emailAddress && (
           <div className=" text-sm text-red-500 font-semibold ">
             {formik.errors.emailAddress}
           </div>
@@ -120,14 +93,11 @@ export const SignUpForm = () => {
         <StyledLabel htmlFor="intro">Intro</StyledLabel>
         <textarea
           type="text"
-          name="intro"
           className=" p-4 rounded-md border border-gray-100 resize-none h-full "
           placeholder="Introduce yourself..."
-          value={formik.values.intro}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("intro")}
         />
-        {formik.errors.intro && (
+        {formik.touched.intro && formik.errors.intro && (
           <div className=" text-sm text-red-500 font-semibold ">
             {formik.errors.intro}
           </div>
@@ -138,20 +108,14 @@ export const SignUpForm = () => {
       <div className=" flex flex-col gap-2 mb-5 ">
         <StyledLabel htmlFor="job">Your job</StyledLabel>
         <select
-          name="job"
           className=" p-4 rounded-md border border-gray-100 bg-white "
           placeholder="Select your job"
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("job")}
         >
           <option value="aieng">AI Engineer</option>
           <option value="eng">English</option>
           <option value="vn">Viet nam</option>
-        </select>{" "}
-        {formik.errors.lastName && (
-          <div className=" text-sm text-red-500 font-semibold ">
-            {formik.errors.lastName}
-          </div>
-        )}
+        </select>
       </div>
 
       {/* Checkbox */}

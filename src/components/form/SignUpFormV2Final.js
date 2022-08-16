@@ -7,17 +7,19 @@ export const StyledLabel = styled.label`
   font-weight: bold;
 `;
 
+export const initialValues = {
+  firstName: ``,
+  lastName: ``,
+  emailAddress: ``,
+  intro: ``,
+  job: ``,
+  terms: false,
+};
+
 export const SignUpFormV2Final = () => {
   return (
     <Formik
-      initialValues={{
-        firstName: ``,
-        lastName: ``,
-        emailAddress: ``,
-        intro: ``,
-        job: ``,
-        terms: false,
-      }}
+      initialValues={initialValues}
       validationSchema={Yup.object({
         firstName: Yup.string().required(`Required`),
         lastName: Yup.string().required(`Required`),
@@ -29,69 +31,80 @@ export const SignUpFormV2Final = () => {
           "Please check the terms and conditions"
         ),
       })}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={(values, action) => {
+        setTimeout(() => {
+          action.setSubmitting();
+        }, 5000);
       }}
     >
-      <Form className=" p-10 w-full max-w-[500px] mx-auto " autoComplete="off">
-        {/* First name */}
-        <CommomInput
-          name="firstName"
-          id="firstName"
-          label="First name"
-          placeholder="Enter your first name"
-          type="text"
-        ></CommomInput>
+      {(formik) => {
+        console.log(formik);
+        return (
+          <Form
+            className=" p-10 w-full max-w-[500px] mx-auto "
+            autoComplete="off"
+          >
+            {/* First name */}
+            <CommomInput
+              name="firstName"
+              id="firstName"
+              label="First name"
+              placeholder="Enter your first name"
+              type="text"
+            ></CommomInput>
 
-        {/* Last name */}
-        <CommomInput
-          name="lastName"
-          id="lastName"
-          label="Last name"
-          placeholder="Enter your last name"
-          type="text"
-        ></CommomInput>
+            {/* Last name */}
+            <CommomInput
+              name="lastName"
+              id="lastName"
+              label="Last name"
+              placeholder="Enter your last name"
+              type="text"
+            ></CommomInput>
 
-        {/* Email address */}
-        <CommomInput
-          name="emailAddress"
-          id="emailAddress"
-          label="Email address"
-          placeholder="Enter your email address"
-          type="email"
-        ></CommomInput>
+            {/* Email address */}
+            <CommomInput
+              name="emailAddress"
+              id="emailAddress"
+              label="Email address"
+              placeholder="Enter your email address"
+              type="email"
+            ></CommomInput>
 
-        {/* Intro */}
-        <CommonTextarea
-          name="intro"
-          id="intro"
-          label="Intro"
-          placeholder="Introduce yourself ..."
-          type="text"
-        ></CommonTextarea>
+            {/* Intro */}
+            <CommonTextarea
+              name="intro"
+              id="intro"
+              label="Intro"
+              placeholder="Introduce yourself ..."
+              type="text"
+            ></CommonTextarea>
 
-        {/* Your job */}
-        <CommonDropdown
-          name="job"
-          label="Your job"
-          placeholder="Select your job"
-        >
-          <option value="FE">Front-end Developer</option>
-          <option value="BE">Back-end Developer</option>
-          <option value="FS">Full-stack Developer</option>
-        </CommonDropdown>
+            {/* Your job */}
+            <CommonDropdown
+              name="job"
+              label="Your job"
+              placeholder="Select your job"
+            >
+              <option value="FE">Front-end Developer</option>
+              <option value="BE">Back-end Developer</option>
+              <option value="FS">Full-stack Developer</option>
+            </CommonDropdown>
 
-        {/* Checkbox */}
-        <CommonCheckbox name="terms">
-          <p>I accept the terms and conditions</p>
-        </CommonCheckbox>
+            {/* Checkbox */}
+            <CommonCheckbox name="terms">
+              <p>I accept the terms and conditions</p>
+            </CommonCheckbox>
 
-        {/* Submit */}
-        <CommonSubmitButton
-          name="submit"
-          buttonname="Submit"
-        ></CommonSubmitButton>
-      </Form>
+            {/* Submit */}
+            <CommonSubmitButton
+              disable={formik.isSubmitting ? 1 : 0}
+              name="submit"
+              buttonname="Submit"
+            ></CommonSubmitButton>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
@@ -178,16 +191,19 @@ export const CommonCheckbox = ({ children, ...props }) => {
 
 export const CommonSubmitButton = (props) => {
   const [field] = useField(props);
-  return (
-    <div>
-      <button
-        type="submit"
-        className=" w-full p-4 bg-blue-500 rounded-lg text-white font-semibold "
-        {...props}
-        {...field}
-      >
-        {props.buttonname}
-      </button>
+  return props.disable ? (
+    <div className="w-full h-[60px] bg-blue-500 items-center justify-center flex rounded-lg ">
+      <div className="w-8 h-8 rounded-full border-4 border-white border-r-4 border-r-transparent animate-spin"></div>
     </div>
+  ) : (
+    <button
+      disabled={props.disable}
+      type="submit"
+      className=" w-full h-[60px] bg-blue-500 rounded-lg text-white font-semibold "
+      {...props}
+      {...field}
+    >
+      {props.buttonname}
+    </button>
   );
 };

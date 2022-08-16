@@ -1,9 +1,9 @@
 import "./App.css";
-import { SignUpFormV2Final } from "./components/form/SignUpFormV2Final";
+import { SignUpFormWithHook } from "./components/form/SignUpFormWithHook";
 function App() {
   return (
     <div>
-      <SignUpFormV2Final></SignUpFormV2Final>
+      <SignUpFormWithHook></SignUpFormWithHook>
     </div>
   );
 }

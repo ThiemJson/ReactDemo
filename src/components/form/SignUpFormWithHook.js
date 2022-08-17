@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import axios from "axios";
 
 export const StyledLabel = styled.label`
   font-weight: bold;
@@ -10,13 +11,13 @@ export const StyledLabel = styled.label`
 
 export const schema = yup
   .object({
-    firstName: yup.string("Must be string").required("Required"),
-    lastName: yup.string("Must be string").required("Required"),
+    firstName: yup.string("Must be string").required("This field required"),
+    lastName: yup.string("Must be string").required("This field required"),
     emailAddress: yup
       .string("Must be string")
       .email("Email invalid")
-      .required("Required"),
-    intro: yup.string("Must be string").required("Required"),
+      .required("This field required"),
+    intro: yup.string("Must be string").required("This field required"),
   })
   .required();
 
@@ -24,20 +25,32 @@ export const SignUpFormWithHook = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    watch,
+    reset,
+    resetField,
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onChange",
   });
+
+  const watchShowAge = watch("showAge", false);
   console.log(
-    "🚀 ~ file: SignUpFormWithHook.js ~ line 28 ~ SignUpFormWithHook ~ errors",
-    errors
+    "🚀 ~ file: SignUpFormWithHook.js ~ line 38 ~ SignUpFormWithHook ~ watchShowAge",
+    watchShowAge
   );
 
-  const handleSubmitForm = (values) => {
-    console.log(
-      "🚀 ~ file: SignUpFormWithHook.js ~ line 13 ~ handleSubmitForm ~ values",
-      values
+  const handleSubmitForm = async (values) => {
+    const { data } = await axios.get(
+      "https://hn.algolia.com/api/v1/search?query=react"
     );
+    reset({
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      intro: "",
+    });
+    return data;
   };
 
   return (
@@ -54,13 +67,9 @@ export const SignUpFormWithHook = () => {
           type="text"
           className=" p-4 rounded-md border border-gray-100 "
           placeholder="Enter your first name"
-          {...register("firstName", {
-            required: true,
-            maxLength: 12,
-            minLength: 5,
-          })}
+          {...register("firstName")}
         />
-        {errors?.firstName?.type === "required" && (
+        {errors?.firstName && (
           <div className=" text-sm text-red-500 font-semibold ">
             {errors?.firstName?.message || "Invalid"}
           </div>
@@ -75,13 +84,9 @@ export const SignUpFormWithHook = () => {
           type="text"
           className=" p-4 rounded-md border border-gray-100 "
           placeholder="Enter your last name"
-          {...register("lastName", {
-            required: true,
-            maxLength: 12,
-            minLength: 5,
-          })}
+          {...register("lastName")}
         />
-        {errors?.lastName?.type === "required" && (
+        {errors?.lastName && (
           <div className=" text-sm text-red-500 font-semibold ">
             {errors?.lastName?.message || "Invalid"}
           </div>
@@ -90,21 +95,15 @@ export const SignUpFormWithHook = () => {
 
       {/* Email address */}
       <div className=" flex flex-col gap-2 mb-5 ">
-        <StyledLabel htmlFor="emailAddress">
-          {errors?.emailAddress?.message || "Invalid"}
-        </StyledLabel>
+        <StyledLabel htmlFor="emailAddress">Email address</StyledLabel>
         <input
           name="emailAddress"
           type="text"
           className=" p-4 rounded-md border border-gray-100 "
           placeholder="Enter your email address"
-          {...register("emailAddress", {
-            required: true,
-            maxLength: 12,
-            minLength: 5,
-          })}
+          {...register("emailAddress")}
         />
-        {errors?.emailAddress?.type === "required" && (
+        {errors?.emailAddress && (
           <div className=" text-sm text-red-500 font-semibold ">
             {errors?.intro?.message || "Invalid"}
           </div>
@@ -121,8 +120,10 @@ export const SignUpFormWithHook = () => {
           placeholder="Introduce yourself..."
           {...register("intro")}
         />
-        {errors?.intro?.type === "required" && (
-          <div className=" text-sm text-red-500 font-semibold ">Required</div>
+        {errors?.intro && (
+          <div className=" text-sm text-red-500 font-semibold ">
+            {errors?.intro?.message || "Invalid"}
+          </div>
         )}
       </div>
 
@@ -140,16 +141,32 @@ export const SignUpFormWithHook = () => {
       </div>
 
       {/* Checkbox */}
+      <div className="flex flex-row gap-2 mb-5 items-center ">
+        <input
+          name="showAge"
+          type="checkbox"
+          className=" w-5 h-5 "
+          {...register("showAge")}
+        ></input>
+        <p>Accept all terms and conditions</p>
+      </div>
 
       {/* Submit */}
-      <div>
-        <button
-          type="submit"
-          className=" w-full p-4 bg-blue-500 rounded-lg text-white font-semibold "
-        >
-          Submit
-        </button>
-      </div>
+      {watchShowAge && (
+        <div>
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className=" w-full p-4 bg-blue-500 rounded-lg text-white font-semibold "
+          >
+            {isSubmitting ? (
+              <div className=" w-5 h-5 border-2 border-white border-t-transparent animate-spin rounded-full mx-auto my-auto "></div>
+            ) : (
+              `Submit`
+            )}
+          </button>
+        </div>
+      )}
     </form>
   );
 };
